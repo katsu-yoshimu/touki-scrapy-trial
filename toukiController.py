@@ -19,7 +19,7 @@ CHIBAN_RETRY_OUT_COUNT = 5 # 地番・家屋番号一覧検索のリトライア
 #   午前8時30分から午後6時までの間（地図及び図面を除きます。） ＝ 終日実行できない
 import jpholiday
 import locale
-locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
+#locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
 
 
 def is_RunEnable(date):
