@@ -95,6 +95,10 @@ def dispalyForm(config):
         # 実行ボタン
         submit_button = st.form_submit_button("収集実行")
 
+import pytz
+
+tokyo_tz = pytz.timezone('Asia/Tokyo')
+
 # 入力チェック
 def checkForm(config):
     isCheck = True
@@ -143,7 +147,7 @@ def checkForm(config):
         isCheck = False
 
     # 実行時間確認
-    if toukiController.is_RunEnable(datetime.now()) == False:
+    if toukiController.is_RunEnable(datetime.now(tokyo_tz)) == False:
         errorMessage = f'現在は{datetime.now().strftime('%Y/%m/%d %H:%M:%S')}です。実行時間外です。\n平日8時30分～21時0分に実行してください。'
         st.warning(errorMessage)
         isCheck = False
