@@ -189,8 +189,8 @@ def run(config):
     conditions = config['conditions_list'][0]
 
     # 設定ファイルに書き戻す
-    with open(CONFIG_FILE, 'w', encoding='utf-8') as file:
-        json.dump(config, file, indent=4, ensure_ascii=False)
+    # with open(CONFIG_FILE, 'w', encoding='utf-8') as file:
+    #    json.dump(config, file, indent=4, ensure_ascii=False)
 
     # 収集処理実行
     # 処理終了時のメッセージ表示のため、出力ファイル名を追記
