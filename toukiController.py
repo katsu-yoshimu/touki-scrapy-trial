@@ -461,13 +461,13 @@ def collectData_stab_abnormal(conditions, user_id, password, isDisplayMessage=Tr
     }
     # print(f'g_process_info={g_process_info}')
     time.sleep(3)
-    return '.\output\output_20241115_163708.xlsx', g_process_info
+    return r'.\output\output_20241115_163708.xlsx', g_process_info
 
 # テスト用スタブ：データ収集（収集条件）正常終了
 def collectData_stab(conditions, user_id, password, isDisplayMessage=True):
     # print(f'g_process_info={g_process_info}')
     time.sleep(3)
-    return '.\output\output_20241115_163708.xlsx', g_process_info
+    return r'.\output\output_20241115_163708.xlsx', g_process_info
 
 # データ収集（収集条件）
 def collectData(conditions, user_id, password, isDisplayMessage=True, isCloud=False):
