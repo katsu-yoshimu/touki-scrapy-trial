@@ -23,6 +23,7 @@ import locale
 
 
 def is_RunEnable(date):
+    return True
     # 祝日は実行不可
     if jpholiday.is_holiday(date):
         print('祝日は実行不可')
