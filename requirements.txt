@@ -4,3 +4,4 @@ openpyxl
 streamlit
 st-gsheets-connection
 PyDrive
+locales
