@@ -1,0 +1,6 @@
+jpholiday
+selenium
+openpyxl
+streamlit
+st-gsheets-connection
+PyDrive
