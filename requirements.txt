@@ -4,4 +4,3 @@ openpyxl
 streamlit
 st-gsheets-connection
 PyDrive
-tkinter
