@@ -5,6 +5,7 @@ import gsContorller
 import time
 from datetime import datetime
 import Message
+from selenium.common.exceptions import TimeoutException
 
 MAX_CHIBAN_SELECT_NUMBER = 50
 MAX_CHIBAN_INTERVAL = 10
@@ -249,7 +250,7 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
         try:
             ctrller.wait(MAX_WAIT_TIME, By.ID, 'cbnDlgSearchChibanStart')  # ★★★ ここでtimeout発生 ★★★
             break
-        except TimeoutError:
+        except TimeoutException:
             if retry_count > 5:
                 break
             retry_count += 1
