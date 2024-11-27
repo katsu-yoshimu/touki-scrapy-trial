@@ -256,6 +256,9 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
             if retry_count > 5:
                 break
             retry_count += 1
+            st.write(f"fuChibanKaokuIchiran={ctrller.get_element_count(By.ID, 'fuChibanKaokuIchiran')}")
+            st.write(f"CCssButton CBack={ctrller.get_element_count(By.CLASS_NAME, 'CCssButton CBack')}")
+
             # 「戻る」クリック
             # ctrller.wait(MAX_WAIT_TIME, By.CLASS_NAME, 'CCssButton CBack')
             # ctrller.click(By.CLASS_NAME, 'CCssButton CBack')
