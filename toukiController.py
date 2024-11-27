@@ -6,6 +6,7 @@ import time
 from datetime import datetime
 import Message
 from selenium.common.exceptions import TimeoutException
+import streamlit as st
 
 MAX_CHIBAN_SELECT_NUMBER = 50
 MAX_CHIBAN_INTERVAL = 10
@@ -251,6 +252,7 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
             ctrller.wait(MAX_WAIT_TIME, By.ID, 'cbnDlgSearchChibanStart')  # ★★★ ここでtimeout発生 ★★★
             break
         except TimeoutException:
+            st.write('TimeoutException発生')
             if retry_count > 5:
                 break
             retry_count += 1
@@ -261,6 +263,7 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
             #  class="CCssButton CBack" value="" tabindex="301">
             # <span>«&nbsp;戻る&nbsp;</span>
             # </button>
+            st.write(f'TimeoutException発生－リトライ{retry_count}')
     ##### Timeoutが発生したら「戻る」をして「地番・家屋番号」をクリックを繰り返す
 
     # 「所在－検索範囲」の入力
