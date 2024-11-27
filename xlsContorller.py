@@ -34,8 +34,8 @@ class xlsContorller():
         self.ws.title = '不動産請求情報一覧'
         
         # 処理開始時刻
-        now = datetime.now()
-        self.ws.cell(row=2, column=5).value = now
+        now = datetime.now(tokyo_tz)
+        self.ws.cell(row=2, column=5).value = now.strftime("%Y-%m-%d_%H:%M:%S")
 
         # 保存先ファイル名
         self.output_file_path = f'{self.OUTPUT_FILE_DIR_PATH}output_{now.strftime("%Y%m%d_%H%M%S")}.xlsx'
@@ -54,7 +54,7 @@ class xlsContorller():
 
     def save(self):
         # 処理終了時刻
-        self.ws.cell(row=3, column=5).value = datetime.now()
+        self.ws.cell(row=3, column=5).value = datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S")
         # 印刷範囲設定
         self.ws.print_area = f'A1:J{(self.row_count-1)}'
         # Excelファイルを保存

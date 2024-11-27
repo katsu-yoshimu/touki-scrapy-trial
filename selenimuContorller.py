@@ -157,10 +157,10 @@ class selenimuContorller():
 
     def actionlog(self, logdata):
         self.actionCount += 1
-        print(f'{datetime.now(tokyo_tz)} #{self.actionCount} {logdata}')
+        print(f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} #{self.actionCount} {logdata}')
 
     def errorlog(self, logdata):
-        print(f'{datetime.now(tokyo_tz)} {logdata}')
+        print(f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} {logdata}')
 
     def log(self, logdata):
-        print(f'{datetime.now(tokyo_tz)} {logdata}')
+        print(f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} {logdata}')
