@@ -257,6 +257,7 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
                 break
             retry_count += 1
             # 「戻る」クリック
+            ctrller.wait(By.CLASS_NAME, 'CCssButton CBack')
             ctrller.click(By.CLASS_NAME, 'CCssButton CBack')
                     
             # <button type="button" onclick="history.back();"
