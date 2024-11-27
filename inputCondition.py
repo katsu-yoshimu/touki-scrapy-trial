@@ -247,9 +247,12 @@ if st.session_state.get("ok_approve_run", False):
     run(config)
 
 import glob
+from natsort import natsorted
+
 st.text('結果ファイル一覧')
 file_list = glob.glob("./output/*.xlsx")
-for file in file_list:
+
+for file in natsorted(file_list):
     if not('template' in file):
         filename = file[9:]
         col1, col2 = st.columns((1,5))
@@ -263,7 +266,7 @@ for file in file_list:
             )
 st.text('結果ファイル一覧（エラー解析用画面スナップショット）')
 file_list = glob.glob("./output/*.png")
-for file in file_list:
+for file in natsorted(file_list):
     if not('template' in file):
         filename = file[9:]
         col1, col2 = st.columns((1,5))
