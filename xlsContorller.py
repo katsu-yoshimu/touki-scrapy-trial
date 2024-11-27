@@ -11,9 +11,9 @@ def editCollectionCondition(conditions):
     return condition
 
 class xlsContorller():
-    TEMPLETE_FILE_PATH = '.\\output\\template.xlsx'
+    TEMPLETE_FILE_PATH = './output/template.xlsx'
     TEMPLETE_SHEET_NAME = 'テンプレート'
-    OUTPUT_FILE_DIR_PATH = '.\\output\\'
+    OUTPUT_FILE_DIR_PATH = './output/'
     wb = ''
     ws = ''
     row_count = 6
