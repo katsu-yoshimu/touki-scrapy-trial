@@ -12,6 +12,9 @@ MAX_WAIT_TIME = 10 # 最大待ち時間、単位：秒
 CHIBAN_RETRY_WAIT_TIME = 5 # 地番・家屋番号一覧表示で再実行が必要な場合の待ち時間、単位：秒
 CHIBAN_RETRY_OUT_COUNT = 5 # 地番・家屋番号一覧検索のリトライアウト数、5回連続して検索エラーなら処理中断
 
+import pytz
+tokyo_tz = pytz.timezone('Asia/Tokyo')
+
 # 実行時間確認
 #（1）土曜日及び日曜日並びに国民の祝日に関する法律（昭和23年法律第178号）に規定する休日（以下「休日」といいます。）を除いた日
 #   午前8時30分から午後11時までの間（地図及び図面については午前8時30分から午後9時までの間）
@@ -469,6 +472,7 @@ def collectData_stab(conditions, user_id, password, isDisplayMessage=True):
     time.sleep(3)
     return r'.\output\output_20241115_163708.xlsx', g_process_info
 
+
 # データ収集（収集条件）
 def collectData(conditions, user_id, password, isDisplayMessage=True, isCloud=False):
     ctrller = None
@@ -582,7 +586,7 @@ def collectData(conditions, user_id, password, isDisplayMessage=True, isCloud=Fa
                 # Cloud対応の場合、スナップショットは取らない
                 if isCloud == False:
                     ctrller.driver.set_window_size(1048, 1048)
-                    ctrller.driver.get_screenshot_as_file(f".\\output\\snapshot_{datetime.now().strftime("%Y%m%d_%H%M%S")}.png")
+                    ctrller.driver.get_screenshot_as_file(f".\\output\\snapshot_{datetime.now(tokyo_tz).strftime("%Y%m%d_%H%M%S")}.png")
                 
         # エラーメッセージ表示
         g_process_info['status'] = False

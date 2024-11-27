@@ -6,6 +6,8 @@ from datetime import datetime
 import time
 import random
 
+import pytz
+tokyo_tz = pytz.timezone('Asia/Tokyo')
 
 class selenimuContorller():
     driver = ""
@@ -155,10 +157,10 @@ class selenimuContorller():
 
     def actionlog(self, logdata):
         self.actionCount += 1
-        print(f'{datetime.now()} #{self.actionCount} {logdata}')
+        print(f'{datetime.now(tokyo_tz)} #{self.actionCount} {logdata}')
 
     def errorlog(self, logdata):
-        print(f'{datetime.now()} {logdata}')
+        print(f'{datetime.now(tokyo_tz)} {logdata}')
 
     def log(self, logdata):
-        print(f'{datetime.now()} {logdata}')
+        print(f'{datetime.now(tokyo_tz)} {logdata}')

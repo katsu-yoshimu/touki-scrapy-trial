@@ -2,6 +2,9 @@ import openpyxl
 from datetime import datetime
 from preflist import PREF_CODE
 
+import pytz
+tokyo_tz = pytz.timezone('Asia/Tokyo')
+
 def editCollectionCondition(conditions):
     condition = f'【土地/建物】{conditions[0]}'
     condition += f'／【都道府県】{list(PREF_CODE)[int(conditions[1])-1]}'
@@ -31,7 +34,7 @@ class xlsContorller():
         self.ws.title = '不動産請求情報一覧'
         
         # 処理開始時刻
-        now = datetime.now()
+        now = datetime.now(tokyo_tz)
         self.ws.cell(row=2, column=5).value = now
 
         # 保存先ファイル名
@@ -51,7 +54,7 @@ class xlsContorller():
 
     def save(self):
         # 処理終了時刻
-        self.ws.cell(row=3, column=5).value = datetime.now()
+        self.ws.cell(row=3, column=5).value = datetime.now(tokyo_tz)
         # 印刷範囲設定
         self.ws.print_area = f'A1:J{(self.row_count-1)}'
         # Excelファイルを保存

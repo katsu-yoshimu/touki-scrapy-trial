@@ -249,7 +249,7 @@ if st.session_state.get("ok_approve_run", False):
 import glob
 st.text('結果ファイル一覧')
 file_list = glob.glob(r"./output/*")
-for file in file_list:
+for file in file_list.sort(reverse=True):
     if not('template' in file):
         filename = file[9:]
         col1, col2 = st.columns((1,5))
