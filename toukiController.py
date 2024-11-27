@@ -238,10 +238,12 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
 
     # 「地番・家屋番号」をクリック
     ctrller.wait(MAX_WAIT_TIME, By.ID, 'fuChibanKaokuIchiran')
+    time.sleep(10) # 10秒スリープ
     ctrller.click(By.ID, 'fuChibanKaokuIchiran')
+    time.sleep(10) # 10秒スリープ
     
     # 「地番・家屋番号選択」画面の表示待ち＝「所在－検索範囲」の表示待ち
-    ctrller.wait(MAX_WAIT_TIME, By.ID, 'cbnDlgSearchChibanStart')
+    ctrller.wait(MAX_WAIT_TIME, By.ID, 'cbnDlgSearchChibanStart')  # ★★★ ここでtimeout発生 ★★★
     
     # 「所在－検索範囲」の入力
     ctrller.send_keys(By.ID, 'cbnDlgSearchChibanStart', chiban_from)
