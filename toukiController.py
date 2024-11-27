@@ -8,7 +8,7 @@ import Message
 
 MAX_CHIBAN_SELECT_NUMBER = 50
 MAX_CHIBAN_INTERVAL = 10
-MAX_WAIT_TIME = 100 # 最大待ち時間、単位：秒
+MAX_WAIT_TIME = 10 # 最大待ち時間、単位：秒
 CHIBAN_RETRY_WAIT_TIME = 5 # 地番・家屋番号一覧表示で再実行が必要な場合の待ち時間、単位：秒
 CHIBAN_RETRY_OUT_COUNT = 5 # 地番・家屋番号一覧検索のリトライアウト数、5回連続して検索エラーなら処理中断
 
