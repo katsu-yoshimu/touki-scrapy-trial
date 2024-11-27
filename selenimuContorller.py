@@ -9,6 +9,8 @@ import random
 import pytz
 tokyo_tz = pytz.timezone('Asia/Tokyo')
 
+import streamlit as st
+
 class selenimuContorller():
     driver = ""
     actionCount = 0
@@ -155,12 +157,17 @@ class selenimuContorller():
     def get_element_count(self, elementType, elementValue):
         return len(self.driver.find_elements(elementType, elementValue))
 
+
     def actionlog(self, logdata):
         self.actionCount += 1
-        print(f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} #{self.actionCount} {logdata}')
+        log_str = f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} #{self.actionCount} {logdata}'
+        print(log_str)
+        st.write(log_str)
 
     def errorlog(self, logdata):
         print(f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} {logdata}')
 
     def log(self, logdata):
-        print(f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} {logdata}')
+        log_str = f'{datetime.now(tokyo_tz).strftime("%Y-%m-%d_%H:%M:%S.%f")} {logdata}'
+        print(log_str)
+        st.write(log_str)
