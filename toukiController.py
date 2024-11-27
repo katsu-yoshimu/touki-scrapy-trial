@@ -257,9 +257,13 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
                 break
             retry_count += 1
             # 「戻る」クリック
-            ctrller.wait(MAX_WAIT_TIME, By.CLASS_NAME, 'CCssButton CBack')
-            ctrller.click(By.CLASS_NAME, 'CCssButton CBack')
-                    
+            # ctrller.wait(MAX_WAIT_TIME, By.CLASS_NAME, 'CCssButton CBack')
+            # ctrller.click(By.CLASS_NAME, 'CCssButton CBack')
+            if ctrller.get_element_count(By.ID, 'fuChibanKaokuIchiran') == 0:
+                st.write(f'TimeoutException発生－execute_script start')
+                ctrller.driver.execute_script('history.back();')
+                st.write(f'TimeoutException発生－execute_script end')
+
             # <button type="button" onclick="history.back();"
             #  class="CCssButton CBack" value="" tabindex="301">
             # <span>«&nbsp;戻る&nbsp;</span>
