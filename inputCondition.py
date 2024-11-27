@@ -148,7 +148,7 @@ def checkForm(config):
 
     # 実行時間確認
     if toukiController.is_RunEnable(datetime.now(tokyo_tz)) == False:
-        errorMessage = f'現在は{datetime.now().strftime('%Y/%m/%d %H:%M:%S')}です。実行時間外です。\n平日8時30分～21時0分に実行してください。'
+        errorMessage = f'現在は{datetime.now(tokyo_tz).strftime('%Y/%m/%d %H:%M:%S')}です。実行時間外です。\n平日8時30分～21時0分に実行してください。'
         st.warning(errorMessage)
         isCheck = False
 
@@ -248,8 +248,22 @@ if st.session_state.get("ok_approve_run", False):
 
 import glob
 st.text('結果ファイル一覧')
-file_list = glob.glob(r"./output/*")
-for file in file_list.sort(reverse=True):
+file_list = glob.glob("./output/*.xlsx")
+for file in file_list:
+    if not('template' in file):
+        filename = file[9:]
+        col1, col2 = st.columns((1,5))
+        with col2:
+            st.text(filename)
+        with col1:
+            st.download_button(
+                'download',
+                open(file, 'br'),
+                filename
+            )
+st.text('結果ファイル一覧（エラー解析用画面スナップショット）')
+file_list = glob.glob("./output/*.png")
+for file in file_list:
     if not('template' in file):
         filename = file[9:]
         col1, col2 = st.columns((1,5))
