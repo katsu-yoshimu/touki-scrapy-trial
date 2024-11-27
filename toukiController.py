@@ -587,10 +587,10 @@ def collectData(conditions, user_id, password, isDisplayMessage=True, isCloud=Fa
                 print(f"≪≪≪≪≪ HTMLソース ここまで ≪≪≪≪≪")
 
                 # スナップショット,
-                # Cloud対応の場合、スナップショットは取らない
-                if isCloud == False:
-                    ctrller.driver.set_window_size(1048, 1048)
-                    ctrller.driver.get_screenshot_as_file(f".\\output\\snapshot_{datetime.now(tokyo_tz).strftime("%Y%m%d_%H%M%S")}.png")
+                # # Cloud対応の場合、スナップショットは取らない
+                # if isCloud == False:
+                ctrller.driver.set_window_size(1048, 1048)
+                ctrller.driver.get_screenshot_as_file(f".\\output\\snapshot_{datetime.now(tokyo_tz).strftime("%Y%m%d_%H%M%S")}.png")
                 
         # エラーメッセージ表示
         g_process_info['status'] = False
