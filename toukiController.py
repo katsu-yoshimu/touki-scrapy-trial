@@ -551,7 +551,11 @@ def collectData(conditions, user_id, password, isDisplayMessage=True, isCloud=Fa
 
         # データセーブ
         xlsCtr.save()
+
+        # ログアウト
+        logout(ctrller)
         
+
     except Exception as e:
         # エラー発生をExcelに出力
         if xlsCtr != None:
@@ -594,9 +598,6 @@ def collectData(conditions, user_id, password, isDisplayMessage=True, isCloud=Fa
         if g_isDisplayMessage:
             Message.MessageForefrontShowinfo(errorMessage)
 
-    # ログアウト
-    logout(ctrller)
-    
     # ブラウザ閉じる
     ctrller.close()
     
