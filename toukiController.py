@@ -236,15 +236,32 @@ def selectChiban(ctrller, xlsCtr, start_select_number, chiban_from, chiban_to):
 
     next_start_select_number = -1  # 地番選択なし（初期値）
 
-    # 「地番・家屋番号」をクリック
-    ctrller.wait(MAX_WAIT_TIME, By.ID, 'fuChibanKaokuIchiran')
-    time.sleep(10) # 10秒スリープ
-    ctrller.click(By.ID, 'fuChibanKaokuIchiran')
-    time.sleep(10) # 10秒スリープ
-    
-    # 「地番・家屋番号選択」画面の表示待ち＝「所在－検索範囲」の表示待ち
-    ctrller.wait(MAX_WAIT_TIME, By.ID, 'cbnDlgSearchChibanStart')  # ★★★ ここでtimeout発生 ★★★
-    
+    #####
+    retry_count = 0
+    while True:
+        # 「地番・家屋番号」をクリック
+        ctrller.wait(MAX_WAIT_TIME, By.ID, 'fuChibanKaokuIchiran')
+        # time.sleep(10) # 10秒スリープ
+        ctrller.click(By.ID, 'fuChibanKaokuIchiran')
+        # time.sleep(10) # 10秒スリープ
+        
+        # 「地番・家屋番号選択」画面の表示待ち＝「所在－検索範囲」の表示待ち
+        try:
+            ctrller.wait(MAX_WAIT_TIME, By.ID, 'cbnDlgSearchChibanStart')  # ★★★ ここでtimeout発生 ★★★
+            break
+        except TimeoutError:
+            if retry_count > 5:
+                break
+            retry_count += 1
+            # 「戻る」クリック
+            ctrller.click(By.CLASS_NAME, 'CCssButton CBack')
+                    
+            # <button type="button" onclick="history.back();"
+            #  class="CCssButton CBack" value="" tabindex="301">
+            # <span>«&nbsp;戻る&nbsp;</span>
+            # </button>
+    ##### Timeoutが発生したら「戻る」をして「地番・家屋番号」をクリックを繰り返す
+
     # 「所在－検索範囲」の入力
     ctrller.send_keys(By.ID, 'cbnDlgSearchChibanStart', chiban_from)
     ctrller.send_keys(By.ID, 'cbnDlgSearchChibanEnd', chiban_to)
