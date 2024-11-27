@@ -198,7 +198,7 @@ def run(config):
 
     # 収集処理実行
     # 処理終了時のメッセージ表示のため、出力ファイル名を追記
-    output_file_path, process_info = toukiController.collectData(conditions, user_id, password, isDisplayMessage=False, isCloud=IS_CLOUD)
+    output_file_path, process_info = toukiController.collectData(conditions, user_id, password, isDisplayMessage=False)
 
     # 収集終了メッセージ
     # 正常終了時
@@ -245,3 +245,19 @@ if st.session_state.get("ok_approve_run", False):
     del st.session_state['ok_approve_run']
     # 収集実行
     run(config)
+
+import glob
+st.text('結果ファイル一覧')
+file_list = glob.glob(r"./output/*")
+for file in file_list:
+    if not('template' in file):
+        filename = file[9:]
+        col1, col2 = st.columns((1,5))
+        with col2:
+            st.text(filename)
+        with col1:
+            st.download_button(
+                'download',
+                open(file, 'br'),
+                filename
+            )

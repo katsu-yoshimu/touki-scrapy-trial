@@ -485,13 +485,13 @@ def collectData(conditions, user_id, password, isDisplayMessage=True, isCloud=Fa
         if isCloud == False:
             xlsCtr = xlsContorller.xlsContorller()
         else:
-            xlsCtr = gsContorller.gsContorller()
+            xlsCtr = xlsContorller.gsContorller()
 
         # 収集条件のデータ出力
         xlsCtr.writeCondition(user_id, conditions)
         
         # ブラウザ起動
-        ctrller = selenimuContorller.selenimuContorller(isCloud=isCloud)
+        ctrller = selenimuContorller.selenimuContorller(isCloud=True)
 
         # ログイン(ログイン、パスワード)
         login(ctrller, user_id, password)
